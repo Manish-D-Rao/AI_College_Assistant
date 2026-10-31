@@ -190,7 +190,7 @@ LLM:  final text or another function_call
 | 1 | done |
 | 2 | done |
 | 3 | done |
-| 4 | not started |
+| 4 | done |
 | 5 | not started |
 | 6 | not started |
 | 7 | not started |
