@@ -46,8 +46,11 @@ def test_mark_task_done_not_found():
 
 
 def test_registry():
-    assert set(tools.TOOLS_BY_NAME) == {"add_task", "list_tasks", "mark_task_done", "get_task"}
-    assert len(tools.TOOLS_SCHEMA) == 4
+    assert set(tools.TOOLS_BY_NAME) == {
+        "add_task", "list_tasks", "mark_task_done", "get_task",
+        "update_task", "delete_task",
+    }
+    assert len(tools.TOOLS_SCHEMA) == 6
     for schema in tools.TOOLS_SCHEMA:
         assert "name" in schema and "parameters" in schema
 

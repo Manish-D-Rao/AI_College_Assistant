@@ -191,10 +191,10 @@ LLM:  final text or another function_call
 | 2 | done |
 | 3 | done |
 | 4 | done |
-| 5 | not started |
-| 6 | not started |
-| 7 | not started |
-| 8 | not started |
+| 5 | done |
+| 6 | done |
+| 7 | done |
+| 8 | done |
 
 Update this table as phases complete.
 

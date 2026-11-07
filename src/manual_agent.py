@@ -4,6 +4,13 @@ We hand-write the system prompt (with TOOLS_SCHEMA) and ask Gemini to emit a
 <tool_call>{...}</tool_call> block. We then parse that block and execute the tool.
 This mirrors the article's "Implementing Tool Calls From Scratch" section.
 In Phase 5 we drop all of this in favour of Gemini's native function calling.
+
+Teaching notes:
+- TOOL_CALLING_SYSTEM_PROMPT: guidelines + <tool_call> format + {tools} placeholder.
+- build_prompt(): formats the system prompt with TOOLS_SCHEMA and appends the user request.
+- extract_tool_call(): regex pulls JSON between <tool_call> and </tool_call>.
+- call_tool(): parses JSON, looks up handler in TOOLS_BY_NAME, executes.
+- run_once(): one request -> one (possible) tool call -> result.
 """
 
 import json

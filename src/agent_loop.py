@@ -3,6 +3,12 @@
 After executing tool(s), we append the result(s) as new message(s) and re-call the
 model. The loop stops when the model returns plain text (no <tool_call>) or when
 max_steps is reached. This is the "request -> execute -> respond -> repeat" cycle.
+
+Teaching notes:
+- extract_tool_calls(): returns a LIST of {name, args} for every <tool_call> block (parallel support).
+- run_agent(): seeds store, loops: send -> if no tool calls, final answer; else execute all, append results, repeat.
+- max_steps guard prevents infinite loops.
+- Execution order matters: even "parallel" calls run in list order.
 """
 
 import json
@@ -54,10 +60,6 @@ def extract_tool_calls(response_text: str) -> list[dict]:
 
 
 def run_agent(user_prompt: str, max_steps: int = 6) -> str:
-    tools._reset_store()
-    tools.add_task("Study DBMS Ch5", "DBMS", "2026-11-10", "high")
-    tools.add_task("OS lab report", "OS", "2026-11-12")
-
     system = TOOL_CALLING_SYSTEM_PROMPT.format(tools=str(tools.TOOLS_SCHEMA))
     messages = [system, "User: " + user_prompt]
 
